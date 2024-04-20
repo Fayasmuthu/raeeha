@@ -24,6 +24,11 @@
 
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css" href="../assets/css/style.css">
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 
 <body>
@@ -31,66 +36,79 @@
     <section class="log-in-section background-image-2 section-b-space">
         <div class="container-fluid-lg w-100">
             <div class="row">
-                <!-- <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
-                    <div class="image-contain">
-                        <img src="../assets/images/inner-page/log-in.png" class="img-fluid" alt="">
-                    </div>
-                </div> -->
-
-                <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-sm-12 mx-auto">
+                    <!-- <nav>
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </a>
+                            </li>
+                        </ol>
+                    </nav> -->
+                    <button onclick="history.back()"><i class="fa-solid fa-arrow-left"></i></button>
                     <div class="log-in-box">
                         <div class="log-in-title">
                             <h2>Login</h2>
                         </div>
 
-                        <div class="input-box">
-                            <form class="row g-4">
-                                <div class="col-12">
-                                    <div class="form-floating theme-form-floating log-in-form">
-                                        <input type="email" class="form-control" id="email" placeholder="Email Address">
-                                        <label for="email">Moblie Number</label>
-                                    </div>
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">IND</button>
-                                    <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="#">USA</a></li>
-                                      <li><a class="dropdown-item" href="#">SAR</a></li>
-                                      <li><a class="dropdown-item" href="#">UK</a></li>
-                                      <li><hr class="dropdown-divider"></li>
-                                      <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                    </ul>
-                                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                  </div>
-
-                                  <div class="col-lg-6 col-12 mb-2 d-none">
-                                    <label for="{{ form.mobile_no.id_for_label }}">
-                                      fdfdf
-                                    </label>
-                                    <input type="text" class="form-control">
-                                  </div>
-
-                                
-
-                                <div class="col-12">
-                                    <button class="btn btn-animation w-100 justify-content-center" type="submit">Log
-                                        In</button>
-                                </div>
+                        <div class="container">
+                            <form id="login" onsubmit="process(event)">
+                              <p>Moblie Number</p>
+                              <input id="phone" class="w-100" type="tel" name="phone" />
+                              <div class="alert alert-info mt-2" style="display: none;"></div>
+                              <input type="submit" class="btn mt-3" value="Verify" />
                             </form>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
- 
+
     <!-- Tap to top and theme setting button end -->
 
-    <!-- Bg overlay Start -->
-    <div class="bg-overlay"></div>
-    <!-- Bg overlay End -->
+    <script>
+        const phoneInputField = document.querySelector("#phone");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+        preferredCountries: ["us", "co", "in", "de"],
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
 
+
+
+        const info = document.querySelector(".alert-info");
+
+        function process(event) {
+        event.preventDefault();
+
+        const phoneNumber = phoneInput.getNumber();
+
+        info.style.display = "";
+        info.innerHTML = `Phone number in : <strong>${phoneNumber}</strong>`;
+        }
+
+        function getIp(callback) {
+        fetch('https://ipinfo.io/json?token=<your token>', { headers: { 'Accept': 'application/json' }})
+        .then((resp) => resp.json())
+        .catch(() => {
+            return {
+            country: 'us',
+            };
+        })
+        .then((resp) => callback(resp.country));
+        }
+
+        
+
+
+        
+
+
+
+
+      </script>
     <!-- latest jquery-->
     <script src="../assets/js/jquery-3.6.0.min.js"></script>
 
