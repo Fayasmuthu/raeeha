@@ -15029,6 +15029,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     .theme-modal .modal-dialog .modal-content .modal-header .modal-title {
         margin-top: 0
     }
+    .theme-modal .modal-dialog  {
+        max-width: 100%;
+    }
 }
 
 .theme-modal .modal-dialog .modal-content .modal-header .btn-close {
