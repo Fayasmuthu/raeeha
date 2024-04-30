@@ -22,3 +22,4 @@ var sliderNine = new Swiper(".slider-9", {
     loop: true,
     freeMode: true,
 });
+
